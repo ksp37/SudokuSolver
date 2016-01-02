@@ -2,6 +2,7 @@
 #define SUDOKU_SOLVER
 
 #include <vector>
+#include <set>
 
 
 //General Matrix class that acts as a wrapper for a two dimensional STL vector 
@@ -26,19 +27,21 @@ protected:
 //sudoku rules. 
 class SudokuMatrix : public Matrix
 {
-  enum{
-    //Value for a cell if it is empty.
-    EMPTY_VALUE = 0
-  };
-
   public:
+
+    enum{
+      //Value for a cell if it is empty.
+      EMPTY_VALUE = 0
+    };
+
     SudokuMatrix();
 
     //SetValue returns true if theValue has been stored successfully, false otherwise.
     //Note that the method checks that theRow and theCol are within bounds and theValue
     //is legal.
-    bool SetValue(size_t theRow, size_t theCol, int theValue);
-    int GetValue(size_t theRow, size_t theCol) const;
+    virtual bool SetValue(size_t theRow, size_t theCol, int theValue);
+    virtual int GetValue(size_t theRow, size_t theCol) const;
+    virtual bool ClearValue(size_t theRow, size_t theCol);
     
     bool IsValueWithinRange(int theValue) const;
 
@@ -50,7 +53,29 @@ class SudokuMatrix : public Matrix
     bool IsRowLegal(size_t theRow, int theValue) const;
     bool IsColLegal(size_t theCol, int theValue) const;
 
+    bool IsSolved() const;
+    std::set<int> GetPossibleValues(size_t theRow, size_t theCol) const;
+
+  protected:
+    std::set<int> m_possibleValuesSet;
+
 };
 
+class SudokuSolver
+{
+  public:
+    SudokuSolver(const SudokuMatrix & theInitialMatrix, bool shouldPreprocess = false);
+    virtual std::vector< std::vector<size_t> > Solve();
+    const std::vector< std::vector<size_t> > & GetSolutionMatrix();
+
+  protected:
+    SudokuMatrix m_matrix;
+    bool m_preprocessFlag;
+    std::vector< std::pair<int,int> > m_permutatedIndices;
+
+  private:
+    bool PopulateMatrix(size_t theRow, size_t theCol);
+
+};
 
 #endif //SUDOKU_SOLVER

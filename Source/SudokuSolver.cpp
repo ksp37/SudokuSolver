@@ -1,5 +1,6 @@
 #include "SudokuSolver.hpp"
-#include <map>
+#include <algorithm>
+#include <functional>
 
 Matrix::Matrix(size_t theRowSize, size_t theColSize)
 {
@@ -56,7 +57,10 @@ SudokuMatrix::SudokuMatrix()
   for (size_t i = 0; i < 9; i++)
   {
     m_vectorMatrix.push_back(std::vector<size_t>(9, EMPTY_VALUE));
+    m_possibleValuesSet.insert(i + 1);
   }
+
+  m_possibleValuesSet.insert(EMPTY_VALUE);
 }
 
 
@@ -88,9 +92,22 @@ bool SudokuMatrix::SetValue(size_t theRow, size_t theCol, int theValue)
   }
 }
 
+bool SudokuMatrix::ClearValue(size_t theRow, size_t theCol)
+{
+  if (theRow < m_vectorMatrix.size()
+    && theCol < m_vectorMatrix[theRow].size()
+    )
+  {
+    m_vectorMatrix[theRow][theCol] = EMPTY_VALUE;
+    return true;
+  }
+
+  return false;
+}
+
 bool SudokuMatrix::IsValueWithinRange(int theValue) const
 {
-  return (theValue < 10 && theValue > 0) || theValue == EMPTY_VALUE;
+  return (theValue < 10 && theValue > 0);
 }
 
 bool SudokuMatrix::IsValueLegal(size_t theRow, size_t theCol, int theValue) const
@@ -172,4 +189,118 @@ bool SudokuMatrix::IsColLegal(size_t theCol, int theValue) const
   }
 
   return true;
+}
+
+std::set<int> SudokuMatrix::GetPossibleValues(size_t theRow, size_t theCol) const
+{
+  std::set<int> currentSet, remainingSet;
+  int blockRowStart = (int)theRow / 3;
+  int blockColStart = (int)theCol / 3;
+  currentSet.insert(EMPTY_VALUE);
+
+  if (theRow >= m_vectorMatrix.size() || theCol >= m_vectorMatrix[theRow].size())
+  {
+    return remainingSet;
+  }
+
+  for (size_t i = blockRowStart * 3; i < (blockRowStart + 1) * 3; i++)
+  {
+    for (size_t j = blockColStart * 3; j < (blockColStart + 1) * 3; j++)
+    {
+      currentSet.insert(m_vectorMatrix[i][j]);
+    }
+  }
+
+  for (size_t i = 0, size = m_vectorMatrix[theRow].size(); i < size; i++)
+  {
+    currentSet.insert(m_vectorMatrix[theRow][i]);
+  }
+
+  for (size_t i = 0, size = m_vectorMatrix.size(); i < size; i++)
+  {
+    currentSet.insert(m_vectorMatrix[i][theCol]);
+  }
+
+  std::set_difference(m_possibleValuesSet.begin(), m_possibleValuesSet.end(),
+    currentSet.begin(), currentSet.end(),
+    remainingSet.begin()
+    );
+
+  return remainingSet;
+}
+
+bool SudokuMatrix::IsSolved() const
+{
+  for (size_t i = 0, colSize = m_vectorMatrix.size(); i < colSize; i++)
+  {
+    for (size_t j = 0, rowSize = m_vectorMatrix[i].size(); j < rowSize; j++)
+    {
+      if (m_vectorMatrix[i][j] == EMPTY_VALUE)
+      {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+//-----------------------------------------------------------------------------------------------//
+
+SudokuSolver::SudokuSolver(const SudokuMatrix & theInitialMatrix, bool shouldPreprocess)
+{
+  m_matrix = theInitialMatrix;
+  m_preprocessFlag = shouldPreprocess;
+
+  if (m_preprocessFlag)
+  {
+    for (size_t i = 0; i < 9; i++)
+    {
+      for (size_t j = 0; j < 9; j++)
+      {
+        std::pair<int, int> possiblitiesForCell;
+        possiblitiesForCell.first = m_matrix.GetPossibleValues(i, j).size();
+        possiblitiesForCell.second = i * 9 + j;
+        m_permutatedIndices.push_back(possiblitiesForCell);
+      }
+    }
+  }
+
+  std::sort(m_permutatedIndices.begin(), m_permutatedIndices.end());
+
+}
+
+std::vector< std::vector<size_t> > SudokuSolver::Solve()
+{
+  //TODO
+}
+
+bool SudokuSolver::PopulateMatrix(size_t theRow, size_t theCol)
+{
+  //TODO
+  //if (m_matrix.IsSolved())
+  //{
+  //  return true;
+  //}
+
+  //if (m_matrix.GetValue(theRow, theCol) != SudokuMatrix::EMPTY_VALUE)
+  //{
+  //  PopulateMatrix(theRow, theCol);
+  //}
+
+  //for (size_t value = 0; value < 10; value++)
+  //{
+  //  if (!m_matrix.SetValue(theRow, theCol, value)
+  //    || !PopulateMatrix(theRow, theCol)
+  //    )
+  //  {
+  //    continue;
+  //  }
+  //}
+  //m_matrix.SetValue(theRow, theCol, 0);
+  //return false;
+}
+
+const std::vector< std::vector<size_t> > & SudokuSolver::GetSolutionMatrix()
+{
+  //TODO
 }
