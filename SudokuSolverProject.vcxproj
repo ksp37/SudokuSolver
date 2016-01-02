@@ -86,11 +86,15 @@
   <ItemGroup>
     <ClCompile Include="Auto\wxFB_SudokuFrame.cpp" />
     <ClCompile Include="Source\SudokuFrame.cpp" />
+    <ClCompile Include="Source\SudokuGrid.cpp" />
+    <ClCompile Include="Source\SudokuSolver.cpp" />
     <ClCompile Include="Source\SudokuSolverApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auto\wxFB_SudokuFrame.h" />
     <ClInclude Include="Include\SudokuFrame.hpp" />
+    <ClInclude Include="Include\SudokuGrid.hpp" />
+    <ClInclude Include="Include\SudokuSolver.hpp" />
     <ClInclude Include="Include\SudokuSolverApp.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

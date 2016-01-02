@@ -33,6 +33,12 @@
     <ClCompile Include="Auto\wxFB_SudokuFrame.cpp">
       <Filter>Source Files\Auto</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SudokuGrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SudokuSolver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\SudokuFrame.hpp">
@@ -43,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="Auto\wxFB_SudokuFrame.h">
       <Filter>Header Files\Auto</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SudokuGrid.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SudokuSolver.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

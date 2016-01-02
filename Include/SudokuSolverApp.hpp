@@ -1,5 +1,3 @@
-
-
 #ifndef SUDOKU_SOLVER_APP
 #define SUDOKU_SOLVER_APP
 

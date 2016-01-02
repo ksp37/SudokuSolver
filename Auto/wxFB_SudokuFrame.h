@@ -8,14 +8,13 @@
 #ifndef __wxFB_SudokuFrame__
 #define __wxFB_SudokuFrame__
 
+#include <wx/sizer.h>
+#include <wx/gdicmn.h>
+#include <wx/string.h>
+#include <wx/button.h>
+#include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/string.h>
-#include <wx/font.h>
-#include <wx/grid.h>
-#include <wx/gdicmn.h>
-#include <wx/button.h>
-#include <wx/sizer.h>
 #include <wx/frame.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -29,7 +28,7 @@ class wxFB_SudokuFrame : public wxFrame
 	private:
 	
 	protected:
-		wxGrid* m_sudokuGrid;
+		wxBoxSizer* m_gridSizer;
 		wxButton* m_solveBtn;
 		
 		wxButton* m_clearBtn;
