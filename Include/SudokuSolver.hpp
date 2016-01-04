@@ -9,17 +9,23 @@
 class Matrix
 {
 public:
+
+  enum{
+    //Value for a cell if it is empty.
+    EMPTY_VALUE = 0,
+    //Value returned by GetValue() if parameters are out of bounds
+    OUT_OF_BOUNDS = -1
+  };
+
   Matrix(size_t theRowSize, size_t theColSize);
   virtual int GetValue(size_t theRow, size_t theCol) const;
   virtual bool SetValue(size_t theRow, size_t theCol, int theValue);
-  size_t GetColSize(size_t theCol) const;
-  size_t GetRowSize(size_t theRow) const;
-
-protected:
-  Matrix();
+  size_t GetColSize() const;
+  size_t GetRowSize() const;
 
 protected:
   std::vector< std::vector<size_t> > m_vectorMatrix;
+  size_t m_noCols, m_noRows;
 };
 
 //SudokuMatrix class is used to represent a sudoku grid. Additional methods
@@ -28,15 +34,9 @@ protected:
 class SudokuMatrix : public Matrix
 {
   public:
-
-    enum{
-      //Value for a cell if it is empty.
-      EMPTY_VALUE = 0
-    };
-
     SudokuMatrix();
 
-    //SetValue returns true if theValue has been stored successfully, false otherwise.
+    //SetValue() returns true if theValue has been stored successfully, false otherwise.
     //Note that the method checks that theRow and theCol are within bounds and theValue
     //is legal.
     virtual bool SetValue(size_t theRow, size_t theCol, int theValue);
@@ -53,7 +53,11 @@ class SudokuMatrix : public Matrix
     bool IsRowLegal(size_t theRow, int theValue) const;
     bool IsColLegal(size_t theCol, int theValue) const;
 
+    //IsSolved() returns true if no empty entries are found. By virtue of SetValue(), if the
+    //matrix is fully populated it must also be solved.
     bool IsSolved() const;
+
+    //Returns the set of legal values for theRow and theCol.
     std::set<int> GetPossibleValues(size_t theRow, size_t theCol) const;
 
   protected:
@@ -64,17 +68,20 @@ class SudokuMatrix : public Matrix
 class SudokuSolver
 {
   public:
+    //An instance must be initialised with anInitialMatrix. The shouldPreprocess flag
+    //indicates if the solver should scan the matrix first to determine an ideal order to
+    //visit cells (default ordering is from left to right then top to bottom).
     SudokuSolver(const SudokuMatrix & theInitialMatrix, bool shouldPreprocess = false);
-    virtual std::vector< std::vector<size_t> > Solve();
-    const std::vector< std::vector<size_t> > & GetSolutionMatrix();
+    SudokuMatrix Solve();
+    SudokuMatrix GetSolutionMatrix();
 
   protected:
     SudokuMatrix m_matrix;
     bool m_preprocessFlag;
-    std::vector< std::pair<int,int> > m_permutatedIndices;
+    std::vector< std::pair<size_t,size_t> > m_permutatedIndices;
 
   private:
-    bool PopulateMatrix(size_t theRow, size_t theCol);
+    bool PopulateMatrix(size_t theIndex);
 
 };
 
