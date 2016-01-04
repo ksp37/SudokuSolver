@@ -12,6 +12,8 @@ class SudokuGrid : public wxGrid
     wxPen GetColGridLinePen(int theCol);
     wxPen GetRowGridLinePen(int theCol);
 
+private:
+  void OnDelete(wxKeyEvent & event);
 };
 
 #endif //SUDOKU_GRID

@@ -40,7 +40,7 @@ class wxFB_SudokuFrame : public wxFrame
 	
 	public:
 		
-		wxFB_SudokuFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Sudoku Solver"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 293,346 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		wxFB_SudokuFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Sudoku Solver"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxMINIMIZE_BOX|wxSYSTEM_MENU|wxCLIP_CHILDREN );
 		~wxFB_SudokuFrame();
 	
 };

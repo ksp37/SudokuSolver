@@ -11,7 +11,7 @@
 
 wxFB_SudokuFrame::wxFB_SudokuFrame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	this->SetSizeHints( wxSize( 400,475 ), wxDefaultSize );
 	this->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
 	
 	wxBoxSizer* frameSizer;
@@ -19,24 +19,25 @@ wxFB_SudokuFrame::wxFB_SudokuFrame( wxWindow* parent, wxWindowID id, const wxStr
 	
 	m_gridSizer = new wxBoxSizer( wxVERTICAL );
 	
-	frameSizer->Add( m_gridSizer, 1, wxEXPAND, 5 );
+	frameSizer->Add( m_gridSizer, 1, wxEXPAND|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
 	wxBoxSizer* buttonSizer;
 	buttonSizer = new wxBoxSizer( wxHORIZONTAL );
 	
 	m_solveBtn = new wxButton( this, wxID_ANY, wxT("Solve"), wxDefaultPosition, wxDefaultSize, 0 );
-	buttonSizer->Add( m_solveBtn, 0, wxALL, 5 );
+	buttonSizer->Add( m_solveBtn, 0, wxALL, 10 );
 	
 	
 	buttonSizer->Add( 0, 0, 1, wxEXPAND, 5 );
 	
 	m_clearBtn = new wxButton( this, wxID_ANY, wxT("Clear"), wxDefaultPosition, wxDefaultSize, 0 );
-	buttonSizer->Add( m_clearBtn, 0, wxALL, 5 );
+	buttonSizer->Add( m_clearBtn, 0, wxALL, 10 );
 	
 	frameSizer->Add( buttonSizer, 0, wxEXPAND, 5 );
 	
 	this->SetSizer( frameSizer );
 	this->Layout();
+	frameSizer->Fit( this );
 	
 	this->Centre( wxBOTH );
 	

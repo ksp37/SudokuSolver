@@ -34,11 +34,11 @@
             <property name="hidden">0</property>
             <property name="id">wxID_ANY</property>
             <property name="maximum_size"></property>
-            <property name="minimum_size"></property>
+            <property name="minimum_size">400,475</property>
             <property name="name">wxFB_SudokuFrame</property>
             <property name="pos"></property>
-            <property name="size">293,346</property>
-            <property name="style">wxDEFAULT_FRAME_STYLE</property>
+            <property name="size">-1,-1</property>
+            <property name="style">wxCAPTION|wxCLOSE_BOX|wxMINIMIZE_BOX|wxSYSTEM_MENU</property>
             <property name="subclass"></property>
             <property name="title">Sudoku Solver</property>
             <property name="tooltip"></property>
@@ -48,7 +48,7 @@
             <property name="validator_variable"></property>
             <property name="window_extra_style"></property>
             <property name="window_name"></property>
-            <property name="window_style">wxTAB_TRAVERSAL</property>
+            <property name="window_style">wxCLIP_CHILDREN</property>
             <property name="xrc_skip_sizer">1</property>
             <event name="OnActivate"></event>
             <event name="OnActivateApp"></event>
@@ -86,7 +86,7 @@
                 <property name="permission">none</property>
                 <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
-                    <property name="flag">wxEXPAND</property>
+                    <property name="flag">wxEXPAND|wxALIGN_CENTER_HORIZONTAL</property>
                     <property name="proportion">1</property>
                     <object class="wxBoxSizer" expanded="1">
                         <property name="minimum_size"></property>
@@ -105,7 +105,7 @@
                         <property name="orient">wxHORIZONTAL</property>
                         <property name="permission">none</property>
                         <object class="sizeritem" expanded="1">
-                            <property name="border">5</property>
+                            <property name="border">10</property>
                             <property name="flag">wxALL</property>
                             <property name="proportion">0</property>
                             <object class="wxButton" expanded="1">
@@ -172,7 +172,7 @@
                             </object>
                         </object>
                         <object class="sizeritem" expanded="1">
-                            <property name="border">5</property>
+                            <property name="border">10</property>
                             <property name="flag">wxALL</property>
                             <property name="proportion">0</property>
                             <object class="wxButton" expanded="1">

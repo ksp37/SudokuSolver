@@ -290,7 +290,7 @@ SudokuSolver::SudokuSolver(const SudokuMatrix & theInitialMatrix, bool shouldPre
   }
 }
 
-SudokuMatrix SudokuSolver::Solve()
+const SudokuMatrix & SudokuSolver::Solve()
 {
   //PopulateMatrix() works recursively to fill in the matrix.
   PopulateMatrix(0);
@@ -335,7 +335,7 @@ bool SudokuSolver::PopulateMatrix(size_t theIndex)
   return false;
 }
 
-SudokuMatrix SudokuSolver::GetSolutionMatrix()
+const SudokuMatrix & SudokuSolver::GetSolutionMatrix()
 {
   return m_matrix;
 }

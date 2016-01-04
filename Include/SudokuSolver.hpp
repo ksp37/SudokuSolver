@@ -72,8 +72,8 @@ class SudokuSolver
     //indicates if the solver should scan the matrix first to determine an ideal order to
     //visit cells (default ordering is from left to right then top to bottom).
     SudokuSolver(const SudokuMatrix & theInitialMatrix, bool shouldPreprocess = false);
-    SudokuMatrix Solve();
-    SudokuMatrix GetSolutionMatrix();
+    const SudokuMatrix & Solve();
+    const SudokuMatrix & GetSolutionMatrix();
 
   protected:
     SudokuMatrix m_matrix;

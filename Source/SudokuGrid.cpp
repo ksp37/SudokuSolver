@@ -28,6 +28,8 @@ SudokuGrid::SudokuGrid(wxWindow * theParent, int theCellSize)
   SetDefaultCellAlignment(wxALIGN_CENTRE, wxALIGN_CENTRE);
   EnableDragRowSize(true);
   SetRowLabelSize(0);
+
+  Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(SudokuGrid::OnDelete), NULL, this);
 }
 
 wxPen SudokuGrid::GetColGridLinePen(int theCol)
@@ -52,4 +54,18 @@ wxPen SudokuGrid::GetRowGridLinePen(int theRow)
   {
     return wxPen(wxColour(0, 0, 0), 1);
   }
+}
+
+void SudokuGrid::OnDelete(wxKeyEvent & event)
+{
+  int key = event.GetKeyCode();
+
+  if (key == WXK_DELETE)
+  {
+    int selectedCellRow = GetGridCursorRow();
+    int selectedCellCol = GetGridCursorCol();
+    SetCellValue(selectedCellRow, selectedCellCol, "");
+  }
+
+  event.Skip();
 }
