@@ -258,7 +258,12 @@ SudokuSolver::SudokuSolver(const SudokuMatrix & theInitialMatrix, bool shouldPre
 {
   m_matrix = theInitialMatrix;
   m_preprocessFlag = shouldPreprocess;
+  DoPreprocessing();
+  
+}
 
+void SudokuSolver::DoPreprocessing()
+{
   //Get the number of legal values for all cells in the matrix if preprocessing.
   if (m_preprocessFlag)
   {

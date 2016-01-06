@@ -81,6 +81,7 @@ class SudokuSolver
     std::vector< std::pair<size_t,size_t> > m_permutatedIndices;
 
   private:
+    void DoPreprocessing();
     bool PopulateMatrix(size_t theIndex);
 
 };
