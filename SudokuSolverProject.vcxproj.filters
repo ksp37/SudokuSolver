@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Auto">
       <UniqueIdentifier>{0e20d3db-0be7-40a6-a0f6-cde8407e8482}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Tests">
+      <UniqueIdentifier>{1a8e04f4-21df-4371-8953-75d23ac804fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tests">
+      <UniqueIdentifier>{5c9cc2ca-c509-4039-a8d6-b69c0196672a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -39,6 +45,12 @@
     <ClCompile Include="Source\SudokuSolver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\SudokuSolverTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\RunTestsMain.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\SudokuFrame.hpp">
@@ -55,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="Include\SudokuSolver.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\SudokuSolverTest.hpp">
+      <Filter>Header Files\Tests</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,10 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{458A6ECD-4158-4AFC-9A34-89C41B9B87D5}</ProjectGuid>
+    <ProjectGuid>{B485E2A9-A162-4BEB-90BE-DA07ED2BECBC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>SudokuSolver</RootNamespace>
-    <ProjectName>SudokuSolverProject</ProjectName>
+    <RootNamespace>TestSudokuSolver</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -42,68 +41,54 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <TargetName>SudokuSolver</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <TargetName>SudokuSolver</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;WINVER=0x0400;__WXMSW__;_WINDOWS;_DEBUG;wxUSE_GUI=1;_UNICODE;__WXDEBUG__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>Auto\;Tests\;include\;$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include\msvc;$(WXWIN)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Kishan\Documents\temp\SudokuSolver\SudokuSolver\SudokuSolver\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>wxmsw30ud_adv.lib;wxmsw30ud_core.lib;wxbase30ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>wxUSE_GUI=1;_UNICODE;WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include\;Auto\;$(WXWIN)\include\msvc;$(WXWIN)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>wxbase30u.lib;wxmsw30u_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Auto\wxFB_SudokuFrame.cpp" />
-    <ClCompile Include="Source\SudokuFrame.cpp" />
-    <ClCompile Include="Source\SudokuGrid.cpp" />
-    <ClCompile Include="Source\SudokuSolver.cpp" />
-    <ClCompile Include="Source\SudokuSolverApp.cpp" />
-    <ClCompile Include="Tests\RunTestsMain.cpp" />
-    <ClCompile Include="Tests\SudokuSolverTest.cpp" />
+    <ClInclude Include="..\Include\SudokuSolver.hpp" />
+    <ClInclude Include="SudokuSolverTest.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Auto\wxFB_SudokuFrame.h" />
-    <ClInclude Include="Include\SudokuFrame.hpp" />
-    <ClInclude Include="Include\SudokuGrid.hpp" />
-    <ClInclude Include="Include\SudokuSolver.hpp" />
-    <ClInclude Include="Include\SudokuSolverApp.hpp" />
-    <ClInclude Include="Tests\SudokuSolverTest.hpp" />
+    <ClCompile Include="..\Source\SudokuSolver.cpp" />
+    <ClCompile Include="RunTestsMain.cpp" />
+    <ClCompile Include="SudokuSolverTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
